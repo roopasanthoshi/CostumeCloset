@@ -1,19 +1,19 @@
 
-const sqlite3 = require('sqlite3').verbose();
-const path = require('path');
+const { Pool } = require('pg');
 
-// Create or connect to the shared SQLite database
-const dbPath = path.join(__dirname, '..', 'costumecloset.db');
-
-const db = new sqlite3.Database(dbPath, (err) => {
-    if (err) {
-        console.error('Database connection failed:', err.message);
-    } else {
-        console.log('Connected to CostumeCloset SQLite database.');
+const db = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+        rejectUnauthorized: false
     }
 });
 
-// Enable foreign key constraints
-db.run('PRAGMA foreign_keys = ON');
+db.on('connect', () => {
+    console.log('Connected to PostgreSQL database.');
+});
+
+db.on('error', (err) => {
+    console.error('Unexpected database error:', err.message);
+});
 
 module.exports = db;

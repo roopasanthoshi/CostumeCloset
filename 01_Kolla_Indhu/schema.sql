@@ -1,28 +1,29 @@
 
 -- Create Actors table
 CREATE TABLE IF NOT EXISTS actors (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
-    email TEXT UNIQUE
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(150) UNIQUE
 );
 
 -- Create Costumes table
 CREATE TABLE IF NOT EXISTS costumes (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
-    era TEXT NOT NULL,
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(150) NOT NULL,
+    era VARCHAR(100) NOT NULL,
     description TEXT,
-    price REAL NOT NULL
+    price NUMERIC(10,2) NOT NULL
 );
 
 -- Create Hires table
 CREATE TABLE IF NOT EXISTS hires (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id SERIAL PRIMARY KEY,
     actor_id INTEGER NOT NULL,
     costume_id INTEGER NOT NULL,
-    hire_date TEXT NOT NULL,
-    return_date TEXT,
-    status TEXT DEFAULT 'Hired',
+    hire_date DATE NOT NULL,
+    return_date DATE,
+    status VARCHAR(50) DEFAULT 'Hired',
+
     FOREIGN KEY (actor_id) REFERENCES actors(id),
     FOREIGN KEY (costume_id) REFERENCES costumes(id)
 );

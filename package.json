@@ -1,0 +1,23 @@
+
+{
+  "name": "costumecloset",
+  "version": "1.0.0",
+  "description": "CostumeCloset REST API",
+  "main": "04_Garipally_Akshith/server.js",
+  "scripts": {
+    "start": "node 04_Garipally_Akshith/server.js",
+    "dev": "nodemon 04_Garipally_Akshith/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.3.0",
+    "pg": "^8.23.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
